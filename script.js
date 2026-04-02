@@ -1,17 +1,21 @@
 let speed = 0;
-let fuel = 78;
+let fuel = 80;
 let temp = 90;
 let range = 420;
 let gear = "P";
 
 const speedValue = document.getElementById("speedValue");
+const gearValue = document.getElementById("gearValue");
+const needle = document.getElementById("needle");
+
 const rpmValue = document.getElementById("rpmValue");
 const rpmBar = document.getElementById("rpmBar");
+
 const fuelValue = document.getElementById("fuelValue");
 const fuelBar = document.getElementById("fuelBar");
+
 const tempValue = document.getElementById("tempValue");
 const rangeValue = document.getElementById("rangeValue");
-const gearValue = document.getElementById("gearValue");
 
 const seatbeltLight = document.getElementById("seatbeltLight");
 const engineLight = document.getElementById("engineLight");
@@ -20,17 +24,19 @@ const doorLight = document.getElementById("doorLight");
 
 function updateMeter() {
   speedValue.textContent = speed;
+  gearValue.textContent = gear;
   fuelValue.textContent = fuel;
   tempValue.textContent = temp;
   rangeValue.textContent = range;
-  gearValue.textContent = gear;
 
-  let rpm = (800 + speed * 25) / 1000;
-  if (rpm > 7.8) rpm = 7.8;
+  const rpm = Math.min(8.0, (0.8 + speed * 0.03));
   rpmValue.textContent = rpm.toFixed(1);
   rpmBar.style.width = (rpm / 8) * 100 + "%";
 
   fuelBar.style.width = fuel + "%";
+
+  const angle = -90 + (speed / 220) * 180;
+  needle.style.transform = `rotate(${angle}deg)`;
 
   if (speed === 0) {
     seatbeltLight.classList.add("active");

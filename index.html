@@ -3,55 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real Car Speed Meter</title>
+  <title>3D 180 Degree Car Speed Meter</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="dashboard">
-    <div class="top-info">
-      <div>Outside 32°C</div>
-      <div id="time">12:45</div>
+
+    <h1>3D Real Car Speed Meter</h1>
+
+    <div class="meter-panel">
+      <div class="meter-3d">
+        <div class="meter-ring"></div>
+        <div class="meter-inner"></div>
+        <div class="needle-base"></div>
+        <div class="needle" id="needle"></div>
+
+        <div class="tick tick-0">0</div>
+        <div class="tick tick-20">20</div>
+        <div class="tick tick-40">40</div>
+        <div class="tick tick-60">60</div>
+        <div class="tick tick-80">80</div>
+        <div class="tick tick-100">100</div>
+        <div class="tick tick-120">120</div>
+        <div class="tick tick-140">140</div>
+        <div class="tick tick-160">160</div>
+        <div class="tick tick-180">180</div>
+        <div class="tick tick-200">200</div>
+        <div class="tick tick-220">220</div>
+
+        <div class="center-display">
+          <div class="speed-value" id="speedValue">0</div>
+          <div class="speed-unit">km/h</div>
+          <div class="gear-box">Gear: <span id="gearValue">P</span></div>
+        </div>
+      </div>
     </div>
 
-    <div class="cluster">
-      <div class="dial">
-        <div class="dial-title">RPM x1000</div>
-        <div class="dial-value" id="rpmValue">1.2</div>
-        <div class="bar">
-          <div class="fill rpm-fill" id="rpmBar"></div>
+    <div class="info-panels">
+      <div class="card">
+        <h3>RPM</h3>
+        <div class="value" id="rpmValue">0.8</div>
+        <div class="bar-bg">
+          <div class="bar-fill rpm-fill" id="rpmBar"></div>
         </div>
       </div>
 
-      <div class="center-display">
-        <div class="car-icon">🚗</div>
-        <div class="speed-number" id="speedValue">0</div>
-        <div class="speed-unit">km/h</div>
-        <div class="gear">Gear: <span id="gearValue">P</span></div>
+      <div class="card">
+        <h3>Fuel</h3>
+        <div class="value"><span id="fuelValue">80</span>%</div>
+        <div class="bar-bg">
+          <div class="bar-fill fuel-fill" id="fuelBar"></div>
+        </div>
       </div>
 
-      <div class="dial">
-        <div class="dial-title">Fuel / Temp</div>
-        <div class="small-readings">
-          <p>Fuel: <span id="fuelValue">78</span>%</p>
-          <p>Temp: <span id="tempValue">90</span>°C</p>
-        </div>
-        <div class="bar">
-          <div class="fill fuel-fill" id="fuelBar"></div>
-        </div>
+      <div class="card">
+        <h3>Temp</h3>
+        <div class="value"><span id="tempValue">90</span>°C</div>
+      </div>
+
+      <div class="card">
+        <h3>Range</h3>
+        <div class="value"><span id="rangeValue">420</span> km</div>
       </div>
     </div>
 
-    <div class="warning-panel">
+    <div class="warning-row">
       <span class="light active" id="seatbeltLight">SEAT BELT</span>
       <span class="light" id="engineLight">ENGINE</span>
       <span class="light" id="absLight">ABS</span>
-      <span class="light" id="doorLight">DOOR</span>
-    </div>
-
-    <div class="bottom-info">
-      <div>Trip A: 124.6 km</div>
-      <div>ODO: 18245 km</div>
-      <div>Range: <span id="rangeValue">420</span> km</div>
+      <span class="light active" id="doorLight">DOOR</span>
     </div>
 
     <div class="controls">
@@ -61,6 +81,7 @@
       <button onclick="brakeCar()">Brake</button>
       <button onclick="stopCar()">Stop</button>
     </div>
+
   </div>
 
   <script src="script.js"></script>
