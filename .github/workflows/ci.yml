@@ -1,0 +1,25 @@
+name: Car Speed CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  check-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: List files
+        run: ls -la
+
+      - name: Check main files
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f script.js
+          echo "All files found"
