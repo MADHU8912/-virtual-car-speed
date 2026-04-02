@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virtual Car Speed</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Virtual Car Speed Animation</h1>
+
+  <div class="dashboard">
+    <p>Speed: <span id="speedValue">20</span> km/h</p>
+    <button onclick="increaseSpeed()">Increase</button>
+    <button onclick="decreaseSpeed()">Decrease</button>
+    <button onclick="stopCar()">Stop</button>
+    <button onclick="startCar()">Start</button>
+  </div>
+
+  <div class="scene">
+    <div class="road"></div>
+
+    <div class="car" id="car">
+      <div class="car-top"></div>
+      <div class="car-body"></div>
+      <div class="wheel wheel-left"></div>
+      <div class="wheel wheel-right"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
