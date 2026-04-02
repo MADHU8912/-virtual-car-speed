@@ -3,23 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Virtual Car Speed</title>
+  <title>Virtus Style Digital Meter</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Virtual Car Speed Animation</h1>
+  <div class="dashboard-wrapper">
+    <h1>Virtus / Polo Inspired Digital Meter</h1>
 
-  <div class="dashboard">
-    <p>Speed: <span id="speedValue">20</span> km/h</p>
-    <button onclick="increaseSpeed()">Increase</button>
-    <button onclick="decreaseSpeed()">Decrease</button>
-    <button onclick="stopCar()">Stop</button>
-    <button onclick="startCar()">Start</button>
+    <div class="cluster">
+      <div class="top-row">
+        <div class="info-box">Gear: <span id="gear">D</span></div>
+        <div class="info-box">Fuel: <span id="fuel">80</span>%</div>
+        <div class="info-box">Temp: <span id="temp">90</span>°C</div>
+      </div>
+
+      <div class="meter-center">
+        <div class="speed-circle">
+          <div class="speed-label">km/h</div>
+          <div class="speed-value" id="speedValue">0</div>
+        </div>
+      </div>
+
+      <div class="bottom-row">
+        <div class="rpm-box">
+          <label>RPM</label>
+          <div class="bar-bg">
+            <div class="bar-fill rpm-fill" id="rpmBar"></div>
+          </div>
+          <span id="rpmValue">0</span>
+        </div>
+
+        <div class="fuel-box">
+          <label>Fuel Level</label>
+          <div class="bar-bg">
+            <div class="bar-fill fuel-fill" id="fuelBar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="warning-row">
+        <span class="light" id="seatbeltLight">SEAT BELT</span>
+        <span class="light" id="engineLight">ENGINE</span>
+        <span class="light" id="doorLight">DOOR</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button onclick="startCar()">Start</button>
+      <button onclick="increaseSpeed()">Speed +</button>
+      <button onclick="decreaseSpeed()">Speed -</button>
+      <button onclick="brakeCar()">Brake</button>
+      <button onclick="stopCar()">Stop</button>
+    </div>
   </div>
 
   <div class="scene">
+    <div class="sky"></div>
     <div class="road"></div>
-
     <div class="car" id="car">
       <div class="car-top"></div>
       <div class="car-body"></div>
