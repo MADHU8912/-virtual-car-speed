@@ -2,9 +2,15 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout SCM') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Checkout Info') {
             steps {
-                echo 'Starting virtual car speed pipeline'
+                echo 'Source code checked out successfully'
             }
         }
 
@@ -23,24 +29,27 @@ pipeline {
         stage('Run Container') {
             steps {
                 bat 'docker rm -f car-speed-container || exit /b 0'
-                bat 'docker run -d -p 8080:80 --name car-speed-container virtual-car-speed'
+                bat 'docker run -d -p 9090:80 --name car-speed-container virtual-car-speed'
             }
         }
 
         stage('Build Log') {
             steps {
-                bat 'echo Virtual car speed deployed successfully > build-log.txt'
-                archiveArtifacts artifacts: 'build-log.txt', fingerprint: true
+                bat 'echo Build completed successfully > build-log.txt'
+                bat 'type build-log.txt'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline success'
+            echo 'Pipeline completed successfully'
         }
         failure {
             echo 'Pipeline failed'
+        }
+        always {
+            echo 'Post actions completed'
         }
     }
 }
