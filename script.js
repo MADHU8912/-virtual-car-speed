@@ -1,50 +1,36 @@
 let speed = 0;
-let fuel = 80;
+let fuel = 78;
 let temp = 90;
+let range = 420;
 let gear = "P";
 
 const speedValue = document.getElementById("speedValue");
 const rpmValue = document.getElementById("rpmValue");
 const rpmBar = document.getElementById("rpmBar");
-const fuelValue = document.getElementById("fuel");
+const fuelValue = document.getElementById("fuelValue");
 const fuelBar = document.getElementById("fuelBar");
-const tempValue = document.getElementById("temp");
-const gearValue = document.getElementById("gear");
-const car = document.getElementById("car");
-const wheels = document.querySelectorAll(".wheel");
+const tempValue = document.getElementById("tempValue");
+const rangeValue = document.getElementById("rangeValue");
+const gearValue = document.getElementById("gearValue");
 
 const seatbeltLight = document.getElementById("seatbeltLight");
 const engineLight = document.getElementById("engineLight");
+const absLight = document.getElementById("absLight");
 const doorLight = document.getElementById("doorLight");
 
-function updateDashboard() {
+function updateMeter() {
   speedValue.textContent = speed;
   fuelValue.textContent = fuel;
   tempValue.textContent = temp;
+  rangeValue.textContent = range;
   gearValue.textContent = gear;
 
-  let rpm = Math.floor(speed * 35);
-  if (rpm > 8000) rpm = 8000;
-  rpmValue.textContent = rpm;
-  rpmBar.style.width = (rpm / 8000) * 100 + "%";
+  let rpm = (800 + speed * 25) / 1000;
+  if (rpm > 7.8) rpm = 7.8;
+  rpmValue.textContent = rpm.toFixed(1);
+  rpmBar.style.width = (rpm / 8) * 100 + "%";
 
   fuelBar.style.width = fuel + "%";
-
-  if (speed <= 0) {
-    car.style.animationPlayState = "paused";
-    wheels.forEach(w => w.style.animationPlayState = "paused");
-  } else {
-    car.style.animationPlayState = "running";
-    wheels.forEach(w => w.style.animationPlayState = "running");
-  }
-
-  let carDuration = 18 - (speed / 10);
-  if (carDuration < 2) carDuration = 2;
-  car.style.animationDuration = carDuration + "s";
-
-  let wheelDuration = 2 - (speed / 150);
-  if (wheelDuration < 0.2) wheelDuration = 0.2;
-  wheels.forEach(w => w.style.animationDuration = wheelDuration + "s");
 
   if (speed === 0) {
     seatbeltLight.classList.add("active");
@@ -59,14 +45,21 @@ function updateDashboard() {
   } else {
     engineLight.classList.remove("active");
   }
+
+  if (speed > 140) {
+    absLight.classList.add("active");
+  } else {
+    absLight.classList.remove("active");
+  }
 }
 
 function startCar() {
   if (speed === 0) {
     speed = 20;
     gear = "D";
-    fuel -= 1;
-    updateDashboard();
+    fuel = Math.max(0, fuel - 1);
+    range = Math.max(0, range - 5);
+    updateMeter();
   }
 }
 
@@ -74,9 +67,10 @@ function increaseSpeed() {
   if (speed < 220) {
     speed += 10;
     gear = "D";
-    fuel -= 1;
+    fuel = Math.max(0, fuel - 1);
     temp += 1;
-    updateDashboard();
+    range = Math.max(0, range - 6);
+    updateMeter();
   }
 }
 
@@ -85,7 +79,7 @@ function decreaseSpeed() {
     speed -= 10;
     if (speed < 0) speed = 0;
     if (speed === 0) gear = "N";
-    updateDashboard();
+    updateMeter();
   }
 }
 
@@ -93,13 +87,13 @@ function brakeCar() {
   speed -= 20;
   if (speed < 0) speed = 0;
   if (speed === 0) gear = "N";
-  updateDashboard();
+  updateMeter();
 }
 
 function stopCar() {
   speed = 0;
   gear = "P";
-  updateDashboard();
+  updateMeter();
 }
 
-updateDashboard();
+updateMeter();

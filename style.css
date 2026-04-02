@@ -5,224 +5,166 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0b0f14;
+  background: #05070b;
   color: white;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-h1 {
-  margin: 20px 0;
-  font-size: 28px;
-}
-
-.dashboard-wrapper {
-  padding: 20px;
-}
-
-.cluster {
-  width: 90%;
-  max-width: 850px;
-  margin: 0 auto 25px;
-  background: linear-gradient(180deg, #111822, #05080d);
-  border: 2px solid #1f2a38;
-  border-radius: 25px;
+.dashboard {
+  width: 95%;
+  max-width: 1100px;
+  background: radial-gradient(circle at center, #101722, #05070b 70%);
+  border: 3px solid #1d2a38;
+  border-radius: 30px;
   padding: 25px;
-  box-shadow: 0 0 20px rgba(0, 200, 255, 0.15);
+  box-shadow: 0 0 30px rgba(0, 150, 255, 0.15);
 }
 
-.top-row,
-.bottom-row,
-.warning-row {
+.top-info,
+.bottom-info,
+.warning-panel,
+.cluster,
+.controls {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 15px;
   flex-wrap: wrap;
 }
 
-.info-box,
-.rpm-box,
-.fuel-box {
-  flex: 1;
-  min-width: 180px;
-  background: #121a24;
-  border-radius: 15px;
-  padding: 15px;
-  border: 1px solid #243243;
+.top-info,
+.bottom-info {
+  color: #9db2c8;
+  font-size: 15px;
+  margin-bottom: 20px;
 }
 
-.meter-center {
-  display: flex;
-  justify-content: center;
+.cluster {
   margin: 25px 0;
+  align-items: stretch;
 }
 
-.speed-circle {
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-  border: 8px solid #00c8ff;
+.dial,
+.center-display {
+  background: #0b1119;
+  border: 2px solid #1c2a39;
+  border-radius: 25px;
+  padding: 20px;
+}
+
+.dial {
+  flex: 1;
+  min-width: 240px;
+}
+
+.center-display {
+  flex: 1.2;
+  min-width: 280px;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  background: radial-gradient(circle, #0d1620 20%, #05080d 100%);
-  box-shadow: 0 0 25px rgba(0, 200, 255, 0.25);
 }
 
-.speed-label {
-  font-size: 20px;
-  color: #8bcfff;
+.dial-title {
+  color: #7ea6d1;
+  margin-bottom: 15px;
+  font-size: 18px;
 }
 
-.speed-value {
-  font-size: 72px;
+.dial-value {
+  font-size: 48px;
   font-weight: bold;
-  color: #ffffff;
+  margin-bottom: 15px;
 }
 
-.bar-bg {
+.car-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.speed-number {
+  font-size: 110px;
+  font-weight: bold;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.15);
+}
+
+.speed-unit {
+  font-size: 22px;
+  color: #7ea6d1;
+  margin-top: 8px;
+}
+
+.gear {
+  margin-top: 15px;
+  font-size: 24px;
+  color: #00d0ff;
+}
+
+.small-readings p {
+  margin: 8px 0;
+  font-size: 20px;
+}
+
+.bar {
   width: 100%;
   height: 18px;
-  background: #1d2733;
-  border-radius: 20px;
+  background: #1a2330;
+  border-radius: 30px;
   overflow: hidden;
-  margin-top: 10px;
+  margin-top: 14px;
 }
 
-.bar-fill {
+.fill {
   height: 100%;
   width: 0%;
-  border-radius: 20px;
   transition: width 0.3s ease;
+  border-radius: 30px;
 }
 
 .rpm-fill {
-  background: linear-gradient(to right, #00ff99, #ffee00, #ff3b3b);
+  background: linear-gradient(to right, #00ff99, #ffee00, #ff3333);
 }
 
 .fuel-fill {
-  background: linear-gradient(to right, #ff3b3b, #ffee00, #00ff99);
+  background: linear-gradient(to right, #ff3333, #ffee00, #00ff99);
 }
 
-.warning-row {
-  margin-top: 20px;
+.warning-panel {
   justify-content: center;
+  margin: 20px 0;
 }
 
 .light {
   padding: 10px 16px;
-  border-radius: 20px;
-  background: #222;
-  color: #aaa;
-  font-size: 14px;
-  border: 1px solid #333;
+  border-radius: 18px;
+  background: #1b1f28;
+  color: #777;
+  border: 1px solid #303847;
+  font-size: 13px;
 }
 
 .light.active {
-  background: #ff9800;
+  background: #ff9f1a;
   color: #111;
   font-weight: bold;
-  box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+  box-shadow: 0 0 12px rgba(255, 159, 26, 0.5);
 }
 
 .controls {
-  margin-bottom: 30px;
+  justify-content: center;
+  margin-top: 25px;
 }
 
 button {
   padding: 12px 18px;
-  margin: 8px;
-  border: none;
-  border-radius: 10px;
   font-size: 16px;
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
-}
-
-.scene {
-  position: relative;
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
-  background: linear-gradient(to top, #1d3557, #87ceeb);
-}
-
-.sky {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.road {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 80px;
-  background: #2f2f2f;
-  border-top: 4px solid #888;
-}
-
-.car {
-  position: absolute;
-  bottom: 50px;
-  left: -240px;
-  width: 220px;
-  height: 100px;
-  animation: drive 10s linear infinite;
-}
-
-.car-top {
-  position: absolute;
-  top: 5px;
-  left: 65px;
-  width: 90px;
-  height: 30px;
-  background: #d9d9d9;
-  border-radius: 15px 15px 0 0;
-}
-
-.car-body {
-  position: absolute;
-  top: 28px;
-  left: 25px;
-  width: 170px;
-  height: 45px;
-  background: #c0c0c0;
-  border-radius: 15px;
-}
-
-.wheel {
-  position: absolute;
-  bottom: 0;
-  width: 38px;
-  height: 38px;
-  background: #111;
-  border: 4px solid #666;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-.wheel-left {
-  left: 35px;
-}
-
-.wheel-right {
-  right: 35px;
-}
-
-@keyframes drive {
-  from {
-    left: -240px;
-  }
-  to {
-    left: 100%;
-  }
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

@@ -3,49 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Virtus Style Digital Meter</title>
+  <title>Real Car Speed Meter</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="dashboard-wrapper">
-    <h1>Virtus / Polo Inspired Digital Meter</h1>
+  <div class="dashboard">
+    <div class="top-info">
+      <div>Outside 32°C</div>
+      <div id="time">12:45</div>
+    </div>
 
     <div class="cluster">
-      <div class="top-row">
-        <div class="info-box">Gear: <span id="gear">D</span></div>
-        <div class="info-box">Fuel: <span id="fuel">80</span>%</div>
-        <div class="info-box">Temp: <span id="temp">90</span>°C</div>
-      </div>
-
-      <div class="meter-center">
-        <div class="speed-circle">
-          <div class="speed-label">km/h</div>
-          <div class="speed-value" id="speedValue">0</div>
+      <div class="dial">
+        <div class="dial-title">RPM x1000</div>
+        <div class="dial-value" id="rpmValue">1.2</div>
+        <div class="bar">
+          <div class="fill rpm-fill" id="rpmBar"></div>
         </div>
       </div>
 
-      <div class="bottom-row">
-        <div class="rpm-box">
-          <label>RPM</label>
-          <div class="bar-bg">
-            <div class="bar-fill rpm-fill" id="rpmBar"></div>
-          </div>
-          <span id="rpmValue">0</span>
-        </div>
-
-        <div class="fuel-box">
-          <label>Fuel Level</label>
-          <div class="bar-bg">
-            <div class="bar-fill fuel-fill" id="fuelBar"></div>
-          </div>
-        </div>
+      <div class="center-display">
+        <div class="car-icon">🚗</div>
+        <div class="speed-number" id="speedValue">0</div>
+        <div class="speed-unit">km/h</div>
+        <div class="gear">Gear: <span id="gearValue">P</span></div>
       </div>
 
-      <div class="warning-row">
-        <span class="light" id="seatbeltLight">SEAT BELT</span>
-        <span class="light" id="engineLight">ENGINE</span>
-        <span class="light" id="doorLight">DOOR</span>
+      <div class="dial">
+        <div class="dial-title">Fuel / Temp</div>
+        <div class="small-readings">
+          <p>Fuel: <span id="fuelValue">78</span>%</p>
+          <p>Temp: <span id="tempValue">90</span>°C</p>
+        </div>
+        <div class="bar">
+          <div class="fill fuel-fill" id="fuelBar"></div>
+        </div>
       </div>
+    </div>
+
+    <div class="warning-panel">
+      <span class="light active" id="seatbeltLight">SEAT BELT</span>
+      <span class="light" id="engineLight">ENGINE</span>
+      <span class="light" id="absLight">ABS</span>
+      <span class="light" id="doorLight">DOOR</span>
+    </div>
+
+    <div class="bottom-info">
+      <div>Trip A: 124.6 km</div>
+      <div>ODO: 18245 km</div>
+      <div>Range: <span id="rangeValue">420</span> km</div>
     </div>
 
     <div class="controls">
@@ -54,17 +60,6 @@
       <button onclick="decreaseSpeed()">Speed -</button>
       <button onclick="brakeCar()">Brake</button>
       <button onclick="stopCar()">Stop</button>
-    </div>
-  </div>
-
-  <div class="scene">
-    <div class="sky"></div>
-    <div class="road"></div>
-    <div class="car" id="car">
-      <div class="car-top"></div>
-      <div class="car-body"></div>
-      <div class="wheel wheel-left"></div>
-      <div class="wheel wheel-right"></div>
     </div>
   </div>
 
